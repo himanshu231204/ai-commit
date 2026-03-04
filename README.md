@@ -1,7 +1,7 @@
 # 🤖 Ollama Git Commit - AI-Powered Commit Messages
 
-[![PyPI version](https://badge.fury.io/py/ollama-git-commit.svg)](https://pypi.org/project/ollama-git-commit/)
-[![Downloads](https://pepy.tech/badge/ollama-git-commit)](https://pepy.tech/project/ollama-git-commit)
+[![PyPI version](https://badge.fury.io/py/ollama-git-commit.svg)]
+[![Downloads](https://pypi.org/project/ollama-git-commit/)](https://pepy.tech/project/ollama-git-commit)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![GitHub Stars](https://img.shields.io/github/stars/himanshu231204/ai-commit?style=social)](https://github.com/himanshu231204/ai-commit)
