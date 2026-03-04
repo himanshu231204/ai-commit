@@ -1,10 +1,12 @@
-# 🤖 AI Commit - AI-Powered Git Commit Messages
+# 🤖 Ollama Git Commit - AI-Powered Commit Messages
+
+[![PyPI version](https://badge.fury.io/py/ollama-git-commit.svg)](https://pypi.org/project/ollama-git-commit/)
+[![Downloads](https://pepy.tech/badge/ollama-git-commit)](https://pepy.tech/project/ollama-git-commit)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![GitHub Stars](https://img.shields.io/github/stars/himanshu231204/ai-commit?style=social)](https://github.com/himanshu231204/ai-commit)
 
 Generate intelligent git commit messages using your local Ollama instance. No API keys, completely free, and runs offline!
-
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![GitHub Stars](https://img.shields.io/github/stars/himanshu231204/ai-commit?style=social)](https://github.com/himanshu231204/ai-commit)
 
 ---
 
@@ -20,9 +22,27 @@ Generate intelligent git commit messages using your local Ollama instance. No AP
 
 ---
 
+## 📦 Installation
+
+### From PyPI (Recommended)
+
+```bash
+pip install ollama-git-commit
+```
+
+### From Source
+
+```bash
+git clone https://github.com/himanshu231204/ai-commit.git
+cd ai-commit
+pip install -e .
+```
+
+---
+
 ## 📋 Prerequisites
 
-Before installing AI Commit, you need:
+Before using Ollama Git Commit, you need:
 
 1. **Python 3.8+**
    ```bash
@@ -45,33 +65,6 @@ Before installing AI Commit, you need:
    # Start Ollama server
    ollama serve
    ```
-
----
-
-## 🚀 Installation
-
-### Option 1: Install from PyPI (Coming Soon)
-```bash
-pip install ai-commit
-```
-
-### Option 2: Install from Source
-```bash
-# Clone the repository
-git clone https://github.com/himanshu231204/ai-commit.git
-cd ai-commit
-
-# Install
-pip install -e .
-```
-
-### Option 3: Quick Install Script
-```bash
-# Clone and run install script
-git clone https://github.com/himanshu231204/ai-commit.git
-cd ai-commit
-bash install.sh
-```
 
 ---
 
@@ -108,18 +101,30 @@ git add hello.py
 ai-commit
 
 # Output:
-# 🤖 AI Commit Message Tool
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# Generated Commit Message:
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# feat: add hello world script
-# ━━━━━━━━━━━━━━━━━━━━━━━━━━━
-#
-# Options:
-#   y - Accept and commit
-#   r - Regenerate message
-#   e - Edit message
-#   n - Cancel
+╔═══════════════════════════════════════════╗
+║         🤖 AI Commit Message Tool         ║
+║      Powered by Local Ollama 🦙           ║
+╚═══════════════════════════════════════════╝
+
+🔍 Checking Ollama server...
+✓ Ollama server is running
+
+📊 Changes:
+  + 1 lines added
+  - 0 lines removed
+
+🤖 Generating commit message...
+
+Generated Commit Message:
+──────────────────────────────────────────────────
+feat: add hello world script
+──────────────────────────────────────────────────
+
+Options:
+  y - Accept and commit
+  r - Regenerate message
+  e - Edit message
+  n - Cancel
 ```
 
 ---
@@ -184,51 +189,6 @@ ollama pull phi
 
 ---
 
-## 🛠️ Development
-
-### Project Structure
-
-```
-ai-commit/
-├── ai_commit.py          # Main script
-├── setup.py              # Installation config
-├── requirements.txt      # Dependencies
-├── README.md            # This file
-├── LICENSE              # MIT License
-├── .gitignore           # Git ignore rules
-└── examples/            # Example usage
-```
-
-### Running Tests
-
-```bash
-# Install dev dependencies
-pip install -e ".[dev]"
-
-# Run tests (coming soon)
-pytest tests/
-```
-
----
-
-## 🤝 Contributing
-
-Contributions are what make the open-source community amazing! Any contributions you make are **greatly appreciated**.
-
-### How to Contribute:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Make your changes
-4. Run tests (when available)
-5. Commit using ai-commit! 😄
-6. Push to your branch (`git push origin feature/amazing-feature`)
-7. Open a Pull Request
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
-
----
-
 ## 📝 Examples
 
 ### Example 1: Adding a New Feature
@@ -282,6 +242,24 @@ Solution: Pull the model with `ollama pull llama2`
 
 ---
 
+## 🤝 Contributing
+
+Contributions are what make the open-source community amazing! Any contributions you make are **greatly appreciated**.
+
+### How to Contribute:
+
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/amazing-feature`)
+3. Make your changes
+4. Run tests (when available)
+5. Commit using ai-commit! 😄
+6. Push to your branch (`git push origin feature/amazing-feature`)
+7. Open a Pull Request
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
 ## 📄 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
@@ -299,6 +277,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🗺️ Roadmap
 
+- [x] Initial release on PyPI
 - [ ] Configuration file support (`.ai-commit.yml`)
 - [ ] More commit message formats
 - [ ] Interactive model selection
@@ -343,18 +322,47 @@ If you find this project helpful, please consider:
 ![GitHub stars](https://img.shields.io/github/stars/himanshu231204/ai-commit?style=social)
 ![GitHub forks](https://img.shields.io/github/forks/himanshu231204/ai-commit?style=social)
 ![GitHub watchers](https://img.shields.io/github/watchers/himanshu231204/ai-commit?style=social)
+![PyPI downloads](https://img.shields.io/pypi/dm/ollama-git-commit)
 
 ---
 
 ## 🔗 Links
 
+- **PyPI Package**: https://pypi.org/project/ollama-git-commit/
 - **Documentation**: [GitHub Wiki](https://github.com/himanshu231204/ai-commit/wiki)
 - **Issues**: [GitHub Issues](https://github.com/himanshu231204/ai-commit/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/himanshu231204/ai-commit/discussions)
 - **Releases**: [GitHub Releases](https://github.com/himanshu231204/ai-commit/releases)
+- **Changelog**: [CHANGELOG.md](CHANGELOG.md)
+
+---
+
+## 🌟 Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=himanshu231204/ai-commit&type=Date)](https://star-history.com/#himanshu231204/ai-commit&Date)
+
+---
+
+## 📣 Show Your Support
+
+Give a ⭐️ if this project helped you!
 
 ---
 
 **Made with ❤️ by [Himanshu Kumar](https://github.com/himanshu231204)**
 
-⭐ **Star this repo if you find it useful!** ⭐
+---
+
+## 🚀 Quick Links
+
+| Resource | Link |
+|----------|------|
+| 📦 **Install** | `pip install ollama-git-commit` |
+| 📖 **Docs** | [GitHub](https://github.com/himanshu231204/ai-commit) |
+| 🐛 **Issues** | [Report Bug](https://github.com/himanshu231204/ai-commit/issues/new?template=bug_report.md) |
+| 💡 **Feature Request** | [Request Feature](https://github.com/himanshu231204/ai-commit/issues/new?template=feature_request.md) |
+| 💬 **Discussions** | [Join Discussion](https://github.com/himanshu231204/ai-commit/discussions) |
+| ⭐ **Star** | [Star on GitHub](https://github.com/himanshu231204/ai-commit) |
+
+---
+
