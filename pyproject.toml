@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "ollama-git-commit"
-version = "0.1.0"
+version = "0.1.1"
 description = "Generate AI-powered git commit messages using local Ollama"
 readme = "README.md"
 authors = [
