@@ -57,7 +57,7 @@ twine check dist/*
 twine upload -r testpypi dist/*
 
 # Test install
-pip install --index-url https://test.pypi.org/simple/ ai-commit-cli
+pip install --index-url https://test.pypi.org/simple/ollama-git-commit
 pip install requests
 
 # Upload to PyPI
@@ -73,7 +73,7 @@ twine upload dist/*
 ## Installation
 
 ```bash
-pip install ai-commit-cli
+pip install ollama-git-commit
 ```
 ```
 
@@ -99,7 +99,7 @@ When releasing new version:
 ## Troubleshooting
 
 ### "Package name exists"
-Change `name="ai-commit-cli"` to something else in both files
+Change `name="ollama-git-commit"` to something else in both files
 
 ### "Invalid credentials"
 Check API token in `~/.pypirc`
@@ -111,10 +111,10 @@ Cannot re-upload same version - increment version number
 
 ## Links
 
-- **PyPI**: https://pypi.org/project/ai-commit-cli/
-- **TestPyPI**: https://test.pypi.org/project/ai-commit-cli/
-- **Downloads**: https://pepy.tech/project/ai-commit-cli
+- **PyPI**: https://pypi.org/project/ollama-git-commit/
+- **TestPyPI**: https://test.pypi.org/project/ollama-git-commit/
+- **Downloads**: https://pepy.tech/project/ollama-git-commit/
 
 ---
 
-Done! Users can now install with: `pip install ai-commit-cli` 🎉
+Done! Users can now install with: `pip install ollama-git-commit` 🎉
