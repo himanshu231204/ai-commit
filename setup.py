@@ -8,7 +8,7 @@ with open(os.path.join(this_directory, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="ollama-git-commit",
-    version="0.1.2",
+    version="0.1.3",
     author="Himanshu Kumar",
     author_email="himanshu231204@gmail.com",
     description="Generate AI-powered git commit messages using local Ollama",

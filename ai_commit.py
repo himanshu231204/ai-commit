@@ -10,6 +10,7 @@ Email: himanshu231204@gmail.com
 import json
 import subprocess
 import sys
+import argparse
 from typing import Optional
 import requests
 
@@ -30,9 +31,9 @@ class Colors:
 class OllamaClient:
     """Client for interacting with Ollama API"""
     
-    def __init__(self, base_url: str = "http://localhost:11434", model: str = "llama2"):
+    def __init__(self, base_url: str = "http://localhost:11434", model: str = None):
         self.base_url = base_url.rstrip('/')
-        self.model = model
+        self.model = model  # Will be auto-selected if None
     
     def is_available(self) -> bool:
         """Check if Ollama server is running"""
@@ -53,6 +54,37 @@ class OllamaClient:
         except requests.exceptions.RequestException:
             return []
     
+    def auto_select_model(self) -> Optional[str]:
+        """
+        Auto-select the best available model.
+        Priority: lighter/faster models first for better performance
+        """
+        available = self.list_models()
+        
+        if not available:
+            return None
+        
+        # Priority order: lightest/fastest first
+        # phi > mistral > codellama > llama2 > llama3 (larger models)
+        priority_order = [
+            'phi',           # Smallest, fastest
+            'mistral',       # Fast and good quality
+            'qwen',          # Fast alternative
+            'gemma',         # Google's lightweight
+            'codellama',     # Good for code
+            'llama2',        # Larger but reliable
+            'llama3',        # Largest, slowest
+        ]
+        
+        # First, try to match exact priority
+        for priority_model in priority_order:
+            for available_model in available:
+                if available_model.lower().startswith(priority_model):
+                    return available_model
+        
+        # If no match, return first available
+        return available[0]
+    
     def generate(self, prompt: str) -> Optional[str]:
         """Generate text using Ollama"""
         try:
@@ -63,14 +95,23 @@ class OllamaClient:
                     "prompt": prompt,
                     "stream": False
                 },
-                timeout=30
+                timeout=120  # Increased to 2 minutes for larger models
             )
             
             if response.status_code == 200:
                 return response.json().get('response', '').strip()
+            else:
+                print(f"{Colors.RED}Ollama returned status {response.status_code}{Colors.END}")
+                return None
+        except requests.exceptions.Timeout:
+            print(f"{Colors.RED}Request timed out. Model '{self.model}' might be too large.{Colors.END}")
+            print(f"{Colors.YELLOW}Try using a lighter model like 'phi' or 'mistral'{Colors.END}")
+            return None
+        except requests.exceptions.ConnectionError:
+            print(f"{Colors.RED}Cannot connect to Ollama at {self.base_url}{Colors.END}")
             return None
         except requests.exceptions.RequestException as e:
-            print(f"{Colors.RED}Error connecting to Ollama: {e}{Colors.END}")
+            print(f"{Colors.RED}Error: {e}{Colors.END}")
             return None
 
 
@@ -255,10 +296,31 @@ def main():
     print(f"{Colors.GREEN}✓ Ollama server is running{Colors.END}\n")
     
     # List available models
-    models = ollama.list_models()
-    if models:
-        print(f"{Colors.CYAN}Available models:{Colors.END} {', '.join(models)}")
-        print(f"{Colors.CYAN}Using model:{Colors.END} {ollama.model}\n")
+    available_models = ollama.list_models()
+    
+    if not available_models:
+        print(f"{Colors.RED}❌ No Ollama models found{Colors.END}")
+        print(f"{Colors.YELLOW}Please install a model first:{Colors.END}")
+        print(f"  ollama pull phi          # Fastest, recommended")
+        print(f"  ollama pull mistral      # Good balance")
+        print(f"  ollama pull llama2       # Default")
+        sys.exit(1)
+    
+    # Display available models
+    print(f"{Colors.CYAN}Available models ({len(available_models)}):{Colors.END}")
+    for model in available_models:
+        print(f"  • {model}")
+    print()
+    
+    # Auto-select the best (lightest/fastest) model
+    selected_model = ollama.auto_select_model()
+    if selected_model:
+        ollama.model = selected_model
+        print(f"{Colors.GREEN}✓ Auto-selected: {Colors.BOLD}{selected_model}{Colors.END}")
+        print(f"{Colors.CYAN}  (Prioritizing lighter/faster models){Colors.END}\n")
+    else:
+        print(f"{Colors.YELLOW}Warning: Could not auto-select model, using first available{Colors.END}\n")
+        ollama.model = available_models[0]
     
     # Get staged diff
     diff = GitService.get_staged_diff()
